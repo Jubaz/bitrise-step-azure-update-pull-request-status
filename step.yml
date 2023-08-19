@@ -59,7 +59,7 @@ inputs:
       is_expand: true
       is_required: true 
 
-  - genre:
+  - context_genre:
     opts:
       title: "Genre"
       summary: "Genre"
