@@ -1,0 +1,87 @@
+title: |-
+  azure-update-pull-request-status
+summary: |
+  Update pull request status
+description: |
+  Update pull request status
+website: https://github.com/Jubaz/bitrise-step-azure-update-pull-request-status
+source_code_url: https://github.com/Jubaz/bitrise-step-azure-update-pull-request-status
+support_url: https://github.com/Jubaz/bitrise-step-azure-update-pull-request-status/issues
+
+type_tags:
+  - notification
+
+is_skippable: true
+
+deps:
+  brew:
+  - name: curl
+  apt_get:
+  - name: curl
+
+toolkit:
+  bash:
+    entry_file: step.sh
+
+inputs:
+  - azure_pat: "$AZURE_PERSONAL_ACCESS_TOKEN"
+    opts:
+      title: "Azure Personal Access Token"
+      summary: "Azure Personal Access Token"
+      is_expand: true
+      is_required: true
+      is_sensitive: true
+  - organization_name:
+    opts:
+      title: "Organization Name"
+      summary: "Organization Name"
+      is_expand: true
+      is_required: true
+
+  - project_name:
+    opts:
+      title: "Project Name"
+      summary: "Project Name"
+      is_expand: true
+      is_required: true
+
+  - repository_name:
+    opts:
+      title: "Repository Name"
+      summary: "Repository Name"
+      is_expand: true
+      is_required: true 
+
+  - context_name:
+    opts:
+      title: "Context Name"
+      summary: "Context Name"
+      is_expand: true
+      is_required: true 
+
+  - genre:
+    opts:
+      title: "Genre"
+      summary: "Genre"
+      is_expand: true
+      is_required: false
+
+  - devops_pr_state: "auto"
+    opts:
+      title: Pull Request status
+      description: |
+        Status to set on Pull request.
+
+        Possible values are `auto`, `error`, `failed`, `notApplicable`, `notSet`, `pending`, `succeeded`.
+        If set to `auto` then step will automatically set `succeeded` or `failed` based on build status.
+      is_expand: true
+      is_required: true
+      value_options:
+        - "auto"
+        - "pending"
+        - "succeeded"
+        - "failed"
+        - "error"
+        - "notSet"
+        - "notApplicable"                     
+outputs:
