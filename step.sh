@@ -53,9 +53,9 @@ HTTP_STATUS=$(
         "state": "${state}",
         "description": "${description}",
         "targetUrl": "${BITRISE_BUILD_URL}",
-        "context":  {
-            "genre": "${genre}",
-            "name": "${context_name}"
+        "context": {
+            "name": "${context_name}",
+            "genre": "${context_genre}"
         }
     }
 EOF
