@@ -37,7 +37,7 @@ fi
 
 echo "Server returned:  "
 
-cat response.txt
+cat response.json
 
 ITERATIONS_COUNT=$(jq .count response.json)   
 
