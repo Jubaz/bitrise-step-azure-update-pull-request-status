@@ -37,7 +37,7 @@ fi
 
 echo "Server returned:  "
 
-cat response.json
+cat response.json | jq
 
 ITERATIONS_COUNT=$(jq .count response.json)   
 
@@ -46,7 +46,7 @@ UPDATE_PR_STATUS_URL="https://dev.azure.com/${organization_name}/${project_name}
 
 
 HTTP_STATUS=$(
-    curl -u :${azure_pat} -s -w "%{http_code}" $UPDATE_PR_STATUS_URL \
+    curl -u :${azure_pat} -s -o response.json -w "%{http_code}" $UPDATE_PR_STATUS_URL \
     -H "Content-Type: application/json" \
     -d @- <<EOF
     {
@@ -61,9 +61,12 @@ HTTP_STATUS=$(
 EOF
 )
 
-
 if [ $HTTP_STATUS != "200" ]; 
 then
     echo "Error [HTTP status: $HTTP_STATUS]"
     exit 1
 fi
+
+cat response.json | jq
+
+exit 0
