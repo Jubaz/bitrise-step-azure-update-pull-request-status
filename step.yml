@@ -11,7 +11,8 @@ support_url: https://github.com/Jubaz/bitrise-step-azure-update-pull-request-sta
 type_tags:
   - notification
 
-is_skippable: true
+is_always_run: true
+is_skippable: false
 
 deps:
   brew:
